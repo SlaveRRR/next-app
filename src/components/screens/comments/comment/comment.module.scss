@@ -1,0 +1,46 @@
+.comment {
+    display: grid;
+    grid-template-areas:
+        "author verify"
+        "message message"
+        ". date";
+    row-gap: .5em;
+    border: 1px solid black;
+    border-radius: 2em;
+    width: 60%;
+    padding: 1em 0.8em;
+    box-shadow: 2px 0px 8px 2px rgba(0, 0, 0, 0.8);
+
+    &__author {
+        grid-area: author;
+        max-width: 8em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: .8rem;
+        background-color: #000;
+        color: #fff;
+        padding: 0.4em;
+        text-align: center;
+        border-radius: 11px;
+    }
+    &__verify{
+        grid-area: verify;
+    }
+    &__message {
+        grid-area: message;
+        font-size: .9rem;
+        justify-self: center;
+        max-width: 30ch;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 140%;
+    }
+
+    &__date {
+        grid-area: date;
+        width: max-content;
+        justify-self: end;
+        align-self: end;
+        font-size: .9rem;
+    }
+}

@@ -1,0 +1,74 @@
+@use '../../../../styles/global' as *;
+
+.article {
+    &__container {
+        padding-top: 2em;
+    }
+
+
+
+    display: grid;
+    row-gap: 1em;
+    grid-template-columns: 1fr 2fr .5fr;
+    grid-template-areas: ". . views"
+    ". title ."
+    ". . shortdesc"
+    "desc desc desc"
+    "links links links"
+    ". . show-comments"
+    "comments comments comments"
+    ;
+
+
+
+    &__title {
+        grid-area: title;
+        justify-self: center;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    &__shortdesc {
+        justify-self: end;
+        grid-area: shortdesc;
+        opacity: .8;
+    }
+
+    &__desc {
+        justify-self: center;
+        grid-area: desc;
+    }
+
+    &__show-btn {
+        color: #212529;
+        background-color: #f8f9fa;
+        border: 1px solid #000000;
+        font-size: .8rem;
+        grid-area: show-comments;
+        width: max-content;
+        border-radius: 1.1em;
+        justify-self: center;
+        padding: 1em 0.4em;
+
+    }
+
+    &__views {
+        justify-self: end;
+        grid-area: views;
+    }
+
+    &__comments {
+        grid-area: comments;
+    }
+
+    &__form {
+        margin-bottom: 1em;
+    }
+
+    &__links {
+        grid-area: links;
+        justify-self: center;
+        @include flex($gap: .8em)
+    }
+
+}

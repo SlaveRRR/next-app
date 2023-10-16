@@ -1,0 +1,8 @@
+@use '../../../../styles/global' as *;
+.article__container{
+    padding-top: 2em;
+}
+
+.form{
+    @include flex($dir:column,$gap:.8em)
+}

@@ -1,0 +1,9 @@
+@use '../../../styles/global' as *;
+.main{
+	margin-top: 70px;
+	margin-bottom: 20px;
+    @include mediaMin($size:$device-XM){
+        margin-top: 130px;
+        margin-bottom: 30px;
+    }
+}

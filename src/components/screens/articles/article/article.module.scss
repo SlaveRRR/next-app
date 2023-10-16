@@ -1,0 +1,15 @@
+@use '../../../../styles/global' as *;
+
+.articles__item {
+    padding-top: .4em;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-items: center;
+    border-top: 1px solid rgb(150, 138, 138);
+}
+
+.item__date {
+    min-width: 5.5em;
+
+}

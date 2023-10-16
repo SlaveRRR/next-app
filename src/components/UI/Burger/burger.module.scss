@@ -1,0 +1,44 @@
+@use '../../../styles/global' as *;
+
+.burger-btn {
+
+    display: block;
+    border: none;
+    background: transparent;
+   
+
+    @include mediaMin($size: $device-XM) {
+        display: none;
+    }
+    
+}
+.burger-container {
+    width: 40px;
+    height: 40px;
+
+    &__item{
+        transition: all .3s;
+    }
+
+    &--active{
+        & > .burger-container__item:nth-child(1){
+            transform: rotate(40deg) translate(6px);
+        }
+
+        & > .burger-container__item:nth-child(2){
+            opacity: 0;
+        }
+
+        & > .burger-container__item:nth-child(3){
+            transform: rotate(-40deg) translate(-15px);
+        }
+    }
+
+}
+
+
+
+
+
+
+

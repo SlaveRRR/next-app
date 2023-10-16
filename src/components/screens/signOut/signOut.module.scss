@@ -1,0 +1,15 @@
+.signout {
+    &__container {
+        display: flex;
+        justify-content: center;
+        padding-top: 2em;
+    }
+
+    font-size: 1.3rem;
+    padding: .7em .5em;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 2em;
+
+
+}

@@ -1,0 +1,17 @@
+@use '../../../styles/global' as *;
+
+.pageViews{
+    &__container{
+        @include flex($gap:.2em);
+    }
+    
+    &__icon{
+        opacity: .8;
+    }
+
+    &__views{
+        opacity: .7;
+        font-size: .9rem;
+    }
+
+}
