@@ -4,6 +4,8 @@ import User from '@/models/User'
 import mongoose from 'mongoose'
 import { mailer } from './mailer'
 
+const adminEmails = ['vyacheslav1410@yandex.ru']
+
 const getData = (timeout:number) =>{
     setInterval(async () =>{
         const data = await Article.find().populate({
@@ -13,14 +15,15 @@ const getData = (timeout:number) =>{
         })
         let text:string = '';
         data.forEach(el =>{
-            text+=`Article ${el.title}, comments ${el.comments.length}`
+            text+=`Article: Title '${el.title}' url - ${process.env.NEXTAUTH_URL}/article/${el.id}. Count of comments ${el.comments.length}. Views ${el.views}\n\n`
         });
-          return mailer({
-        from:process.env.MAIL as string,
-        subject:'Statistics for day',
-        text:text,
-        to:'vyacheslav1410@yandex.ru'
-    })
+        await Promise.allSettled(adminEmails.map(el => mailer({
+            from:process.env.MAIL as string,
+            subject:'Statistics for day',
+            text:text,
+            to:el
+        })))
+           
     },timeout)
 }
 export const connect = async () : Promise<void> =>{
@@ -37,7 +40,7 @@ export const connect = async () : Promise<void> =>{
         throw new Error('Connect error')
     }
     finally{
-        // getData(86400000)
+        getData(60000)
     }
 }
 

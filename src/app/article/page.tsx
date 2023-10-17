@@ -6,7 +6,7 @@ import { IArticle } from "@/types/article";
 
 
 
-const getData = async ({page,limit} : {page:number,limit:number}) : Promise<IArticle[]> =>{
+const getData = async ({page,limit} : {page:number,limit:number}) : Promise<[IArticle[],number]> =>{
    
     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/article?page=${page}&limit=${limit}`,{
         cache:'no-store'
@@ -22,9 +22,10 @@ const getData = async ({page,limit} : {page:number,limit:number}) : Promise<IArt
 const ArticlesPage = async ({searchParams} : { searchParams:{ [key:string] : string | string[] | undefined }}) =>{
    
     const page = typeof searchParams.page === 'string' ? Number(searchParams.page) : 1
-    const limit = typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10
-    const articles = await getData({limit,page})
-    return <Articles articles={articles} page={page} limit={limit} />
+    const limit = typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10;
+    
+    const [articles,max] = await getData({limit,page})
+    return <Articles articles={articles} page={page} limit={limit} max={max} />
 }
 
 export default ArticlesPage;

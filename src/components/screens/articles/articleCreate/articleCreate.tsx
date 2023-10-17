@@ -29,7 +29,8 @@ const ArticleCreate: FC = () => {
                 body:JSON.stringify(data)
             })
             
-            socket.emit('article-creation',data)
+            socket.emit('article-creation',data);
+           
             replace('/article')
         } catch (error) {
             console.log(error)
@@ -63,7 +64,7 @@ const ArticleCreate: FC = () => {
                         required:'Description is required!'
                     })} type="text"  id="description"  />
                      <p className='error-text'>{errors?.desc?.message}</p>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Create" />
                 </form>
             </div>
         </section>

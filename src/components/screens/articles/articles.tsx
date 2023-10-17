@@ -14,12 +14,13 @@ import Pagination from '@/components/UI/Pagination/pagination';
 
 
 type Props = {
-    articles: IArticle[],
-    page:number,
-    limit:number
+    articles: IArticle[];
+    page:number;
+    limit:number;
+    max:number;
 }
 
-const Articles: FC<Props> = ({ articles, page, limit }) => {
+const Articles: FC<Props> = ({ articles, page, limit, max }) => {
     
     
     
@@ -37,8 +38,8 @@ const Articles: FC<Props> = ({ articles, page, limit }) => {
                 articles.length > 0 ? articles.map(v => <Article key={v.id} {...v} />) : <p>Articles don`t exist</p>
             }
             {
-                articles.length > 10 && (
-                    <Pagination page={page} />
+                articles.length >= 10 && (
+                    <Pagination page={page} max={max} />
                 )
             }
            

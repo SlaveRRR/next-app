@@ -8,7 +8,7 @@ import { IArticle } from "@/types/article";
 const getData = async (id : string) : Promise<IArticle> =>{
    
     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/article/${id}`,{
-       cache:'no-store',
+       next: {revalidate:10}
        
     });
     if(res.status != 200){

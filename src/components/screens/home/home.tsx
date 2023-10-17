@@ -6,6 +6,7 @@ import cn from "classnames";
 import styles from './home.module.scss'
 
 
+
 interface ImageGallery {
     date: string,
     id: number,
@@ -21,8 +22,9 @@ type Props = {
 
 const Home: FC<Props> = ({data}) => {
     const { data: user , status} = useSession();
-    
+   
     return <div className={cn(styles["gallery-container"],"container")}>
+        
         {status == 'loading' ? <p>Loading...</p> :  <p>You signin as {user?.user?.name}</p>}
        
         <div className={styles["gallery"]}>

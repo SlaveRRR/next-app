@@ -4,6 +4,7 @@ import React, { FC } from 'react';
 import {useForm,SubmitHandler} from 'react-hook-form';
 
 import styles from './sendComment.module.scss'
+import { useRouter } from 'next/navigation';
 
 type FormData = {
     message: string,
@@ -20,7 +21,7 @@ type Props = {
 
 
 const SendComment: FC<Props> = ({ id,userId, mixClass }) => {
-
+    const {refresh} =  useRouter();
     const { register, formState: { errors }, handleSubmit } = useForm<FormData>({
         mode: "onSubmit",
         shouldFocusError: true,

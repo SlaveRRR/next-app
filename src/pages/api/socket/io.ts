@@ -30,12 +30,12 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseServerIO) => {
         io.on('connection', socket => {
 
             socket.on("article-creation", msg => {
-
+                console.log('recieved')
                 socket.broadcast.emit('article-created', msg)
             })
-
+           
             socket.on('comment-creation', msg => {
-
+                console.log('recieved')
                 socket.broadcast.emit('comment-created', msg)
             })
 

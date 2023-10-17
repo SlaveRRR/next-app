@@ -25,6 +25,8 @@
     }
     &__verify{
         grid-area: verify;
+        text-align: center;
+        font-size: .8rem;
     }
     &__message {
         grid-area: message;

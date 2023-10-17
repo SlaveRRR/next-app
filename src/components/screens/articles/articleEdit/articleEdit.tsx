@@ -67,7 +67,7 @@ const ArticleEdit: FC<IArticle> = ({ desc, shortDesc, title, id,datePublic }) =>
                         required:'Description is required!'
                     })} type="text"  id="description"  />
                      <p className='error-text'>{errors?.desc?.message}</p>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Save" />
                 </form>
             </div>
         </section>

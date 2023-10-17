@@ -5,7 +5,7 @@ import Comments from '../../comments/comments';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-import { useForm, SubmitHandler } from 'react-hook-form';
+
 import { IArticle } from '@/types/article'
 
 import cn from 'classnames';
@@ -29,7 +29,7 @@ const ArticleOne: FC<IArticle> = ({ datePublic,desc, shortDesc, title, id, comme
     const { data: user } = useSession();
     const [openComments, setOpen] = useState(false);
 
-   
+   const [articleViews,setArticleViews] = useState<number>(views)
 
     const handleClick = async () => {
         try {
@@ -60,6 +60,7 @@ const ArticleOne: FC<IArticle> = ({ datePublic,desc, shortDesc, title, id, comme
                 body:JSON.stringify(data)
             })
             sessionStorage.setItem("viewed",'1');
+            setArticleViews(articleViews+1)
           }, 2000); 
 
           return () => clearTimeout(timer);
@@ -71,7 +72,7 @@ const ArticleOne: FC<IArticle> = ({ datePublic,desc, shortDesc, title, id, comme
         <section className='article-section'>
             <div className={cn(styles['article__container'], 'container')}>
                 <div className={styles.article}>
-                    <PageViews mixClass={[styles['article__views']]} views={views} />
+                    <PageViews mixClass={[styles['article__views']]} views={articleViews} />
                     <p className={styles['article__title']}>{title}</p>
                     <p className={styles['article__shortdesc']}>{shortDesc}</p>
                     <p className={styles['article__desc']}>{desc}</p>

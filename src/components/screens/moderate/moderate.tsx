@@ -1,65 +1,79 @@
 "use client"
-import React,{FC} from 'react'
+import React, { FC } from 'react'
 import { IComment } from '@/types/comment'
 import Comment from '../comments/comment/comment'
-import Link from 'next/link'
+
 import { useRouter } from 'next/navigation'
-import { ctx } from '@/context/context'
+
 import { useSocket } from '@/context/socketProvider'
+import cn from 'classnames';
+
+
+import styles from './moderate.module.scss'
+
 
 type Props = {
-    comment:IComment
+    comment: IComment
 }
 
-const Moderate : FC<Props> = ({comment}) => {
-    const {replace} = useRouter();
+const Moderate: FC<Props> = ({ comment }) => {
+    const { replace } = useRouter();
 
-    const {socket} = useSocket()
+    const { socket } = useSocket()
 
-    const acceptComment = async () =>{
+    const acceptComment = async () => {
         try {
-            const res = await fetch(`/api/comment/${comment.id}`,{
-                method:'PUT'
+            const res = await fetch(`/api/comment/${comment.id}`, {
+                method: 'PUT'
             })
-            if(!res.ok){
+            if (!res.ok) {
                 throw new Error('Server error!')
             }
         } catch (error) {
             console.log(error)
         }
-        finally{
+        finally {
+            socket.emit('comment-creation', comment)
             alert('Comment was moderated');
-            socket.emit('comment-creation',comment)
+            
             replace('/')
         }
     }
 
-    const rejectComment = async () =>{
+    const rejectComment = async () => {
         try {
-            const res = await fetch(`/api/comment/${comment.id}`,{
-                method:'DELETE'
+            const res = await fetch(`/api/comment/${comment.id}`, {
+                method: 'DELETE'
             })
-            if(!res.ok){
+            if (!res.ok) {
                 throw new Error('Server error!')
             }
         } catch (error) {
             console.log(error)
         }
-        finally{
+        finally {
             alert('Comment was moderated');
             replace('/')
         }
     }
-  return (
-    <>
-        <div>moderate</div>
-        <Comment {...comment}/>
-        <button onClick={() => acceptComment()}>Accept</button>
-        <button onClick={() => rejectComment()}>Reject</button>
-    </>
-    
-    
-  )
+    return (
+        <section className='moderate-section'>
+            <div className={cn(styles["moderate"], "container")}>
+                <h2>Moderate</h2>
+                <Comment {...comment} />
+                <div className={styles["moderate__btns"]}>
+                    <button onClick={() => acceptComment()}>Accept</button>
+                    <button onClick={() => rejectComment()}>Reject</button>
+                </div>
+
+            </div>
+        </section>
+
+
+
+
+
+    )
 }
 
 export default Moderate;

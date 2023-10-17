@@ -11,8 +11,9 @@ export const GET = async (request: NextRequest) => {
     const skip = (page - 1) * limit
    
     const res = await Article.find().limit(limit).skip(skip)
+    const max =  Math.ceil(await Article.count() / limit);
    
-    return NextResponse.json(res)
+    return NextResponse.json([res,max])
 
 }
 

@@ -1,0 +1,9 @@
+@use '../../../styles/global' as *;
+.moderate{
+    padding-top: 2em;
+    @include flex($dir:column, $gap:.8em);
+
+    &__btns{
+        @include flex($gap:1em);
+    }
+}

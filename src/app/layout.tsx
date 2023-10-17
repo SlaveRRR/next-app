@@ -12,11 +12,11 @@ import UIContainer from '@/components/screens/UIContainer/UIContainer'
 
 
 
-const roboto = Roboto({ subsets:['latin'], weight:['300','400','500']  });
+const roboto = Roboto({ subsets: ['latin'], weight: ['300', '400', '500'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
-  description:'Next blog app'
+  description: 'Next blog app'
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
@@ -24,17 +24,19 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <SocketProvider>
+
         <AuthProvider>
-        <ContextProvider>
-          <Header />
-          <Main>
-            {children}
-          </Main>
-          <UIContainer/>
-        </ContextProvider>
+          <ContextProvider>
+            <SocketProvider>
+              <Header />
+              <Main>
+                {children}
+              </Main>
+              <UIContainer />
+            </SocketProvider>
+          </ContextProvider>
         </AuthProvider>
-        </SocketProvider>
+
 
       </body>
 

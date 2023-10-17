@@ -18,15 +18,15 @@ const UiSnackBar: FC = () => {
         <>
         <CSSTransition
             in={active}
-            timeout={1000}
+            timeout={500}
             unmountOnExit
             classNames={{
                 enter:styles["snackbar-container--enter"],
                 enterActive: styles["snackbar-container--enterActive"],
-                enterDone: styles["snackbar-container--enterDone"],
+               
                 exit:styles["snackbar-container--exit"],
                 exitActive: styles["snackbar-container--exitActive"],
-                exitDone: styles["snackbar-container--exitDone"]
+                
               }}
         >
             <div className={cn(styles['snackbar-container'], {

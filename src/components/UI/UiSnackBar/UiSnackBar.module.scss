@@ -8,7 +8,7 @@
     font-size: 1.5rem;
     border-radius: 10px;
     @include flex;
-    transition: opacity .4s ease-in-out, transform .5s linear;
+    // transition: opacity .4s ease-in-out, transform .5s linear;
 
     &--positive {
         color: #001F3F;
@@ -19,15 +19,18 @@
         color: #FFFFFF;
         background-color: $color-negative;
     }
+  
     &--enter{
-        opacity: 1;
+        transition: opacity .8s ease-in-out, transform .5s linear;
+        opacity: .8;
     }
     &--enterActive{
+        transition: transform .5s linear;
         transform: translateY(0);
         opacity: 1;
     }
     &--exit{
-        opacity: 0;
+        opacity: 1;
     }
     
     &--exitActive {
